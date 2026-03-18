@@ -56,6 +56,9 @@ It wrote the code, ran away, and now the game is unplayable.
 - [ ] [Insert a screenshot of your fixed, winning game here]
 <img src="Demo.png" alt="Demo" width="500"/>
 
+## Pytest Results
+<img src="pytest_results.png" alt="Pytest" width="500"/>
+
 ## 🚀 Stretch Features
 
 - [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
