@@ -25,8 +25,9 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
+# Initialize attempts at 0 so attempt counting aligns with user input and game-over checks
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    st.session_state.attempts = 0
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -64,10 +65,12 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
-# Fixme: Fails to reset the game state properly on new game, and doesn't handle game over conditions correctly. Refactor the logic to ensure the game resets and handles win/loss states as expected.
+# Reset the game state properly when starting a new game
 if new_game:
     st.session_state.attempts = 0
-    st.session_state.secret = random.randint(1, 100)
+    st.session_state.secret = random.randint(low, high)
+    st.session_state.score = 0
+    st.session_state.history = []
     st.session_state.status = "playing"
     st.success("New game started.")
     st.rerun()
@@ -90,7 +93,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
-        # Use consistent int type for secret
+
         secret = st.session_state.secret
 
         outcome, message = check_guess(guess_int, secret)
