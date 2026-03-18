@@ -132,9 +132,11 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
+# Fixme: Fails to reset the game state properly on new game, and doesn't handle game over conditions correctly. Refactor the logic to ensure the game resets and handles win/loss states as expected.
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
+    st.session_state.status = "playing"
     st.success("New game started.")
     st.rerun()
 
